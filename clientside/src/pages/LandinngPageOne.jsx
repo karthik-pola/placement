@@ -48,7 +48,7 @@ export function LandinngPageOne() {
                 />
               </svg>
             </span>
-            <span className="font-bold">DevUI</span>
+            <span className="font-bold">Campus Connect</span>
           </div>
           <div className="hidden lg:block">
             <ul className="inline-flex space-x-8">

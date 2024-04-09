@@ -1,13 +1,16 @@
 import React from 'react'
 import { ExampleNavbarOne } from '../../components/ExampleNavbarOne'
 import { FooterThree } from '../../components/FooterThree'
+import Help from './Help.jsx'
+import  ContactPageOne  from './ContactPageOne.jsx'
 
 const Contact = () => {
   return (
     <div>
       <ExampleNavbarOne />
-      <div>this is contact page</div>
-      <div className="footer">
+      <Help />
+      {/* <ContactPageOne /> */}
+      <div className="footer w-full">
         <FooterThree />
       </div>
     </div>

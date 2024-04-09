@@ -71,6 +71,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import SidebarMenu from "./SidebarMenu";
 import '../styles/dashboard.css';
+import NavbarComponent from "./NavbarComponent";
 
 
 const routes = [
@@ -89,11 +90,11 @@ const routes = [
     name:"Resources",
     icon: <GrResources />
   },
-  {
-    path:"/u1/Quizzes",
-    name:"Quizzes",
-    icon: <PiExamFill />
-  },
+  // {
+  //   path:"/u1/Quizzes",
+  //   name:"Quizzes",
+  //   icon: <PiExamFill />
+  // },
   {
     path:"/u1/help",
     name:"Support and help",
@@ -228,8 +229,11 @@ const StudentDashboard = ({ children }) => {
             })}
           </section>
         </motion.div>
-
-        <main className="content-div">{children}</main>
+        <div className="flex-column w-full overflow-y-scroll">
+        <NavbarComponent />
+          <main className="content-div">{children}</main>
+        </div>
+        
       </div>
     </>
   );

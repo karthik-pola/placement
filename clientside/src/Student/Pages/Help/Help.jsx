@@ -1,65 +1,124 @@
-import React from 'react'
-import { Star, ChevronDown } from 'lucide-react'
+import React, { useEffect, useState } from 'react'
+import StudentDashboard from '../../Components/StudentDashboard'
+import axios from 'axios';
+
 
 const Help = () => {
+  const [username , setUsername] = useState();
+  const [rollNo , setRollNo] = useState();
+  const [email , setEmail] = useState();
+  const [message , setMessage] = useState();
+
+
+
+  const handleSubmit = async() => {
+    const response = await axios.post("http://localhost:8000/api/v1/help/create" , {
+      "message":message,
+      "email":email,
+      "rollNo":rollNo,
+      "username":username
+  });
+  window. location. reload();
+  };
+
   return (
-    <section className="overflow-hidden">
-      <div className="mx-auto max-w-5xl px-5 py-24">
-        <div className="mx-auto flex flex-wrap items-center lg:w-4/5">
-          <img
-            alt="Nike Air Max 21A"
-            className="h-64 w-full rounded object-cover lg:h-96 lg:w-1/2"
-            src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c2hvZXN8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"
-          />
-          <div className="mt-6 w-full lg:mt-0 lg:w-1/2 lg:pl-10">
-            <h2 className="text-sm font-semibold tracking-widest text-gray-500">Nike</h2>
-            <h1 className="my-4 text-3xl font-semibold text-black">Nike Air Max 21A</h1>
-            <div className="my-4 flex items-center">
-              <span className="flex items-center space-x-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={16} className="text-yellow-500" />
-                ))}
-                <span className="ml-3 inline-block text-xs font-semibold">4 Reviews</span>
-              </span>
+    <StudentDashboard>
+    <div className="mx-auto w-full max-w-8xl bg-slate-100 py-2 h-full rounded-lg">
+      <div className="mx-auto my-4 max-w-2xl md:my-6">
+        <nav className="mb-8 flex" aria-label="Breadcrumb">
+          <ol className="inline-flex items-center space-x-1 md:space-x-3">
+          </ol>
+        </nav>
+        <div className="overflow-hidden rounded-xl bg-white p-4 shadow">
+          <p className="text-sm font-bold text-gray-900">Contact Form</p>
+          <div className="mt-6 gap-6 space-y-4 md:grid md:grid-cols-2 md:space-y-0">
+            <div className="w-full">
+              <label
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                htmlFor="firstName"
+              >
+                Name
+              </label>
+              <input
+                className="flex h-10 w-full rounded-md border border-black/30 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                type="text"
+                placeholder="Enter your Name "
+                id="firstName"
+                onChange={(e)=>{setUsername(e.target.value)}}
+              ></input>
             </div>
-            <p className="leading-relaxed">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur rem amet repudiandae
-              neque adipisci eum enim, natus illo inventore totam?
-            </p>
-            <div className="mb-5 mt-6 flex items-center border-b-2 border-gray-100 pb-5">
-              <div className="flex items-center">
-                <span className="mr-3 text-sm font-semibold">Color</span>
-                <button className="h-6 w-6 rounded-full border-2 border-gray-300 focus:outline-none"></button>
-                <button className="ml-1 h-6 w-6 rounded-full border-2 border-gray-300 bg-gray-700 focus:outline-none"></button>
-                <button className="ml-1 h-6 w-6 rounded-full border-2 border-gray-300 bg-green-200 focus:outline-none"></button>
-              </div>
-              <div className="ml-auto flex items-center">
-                <span className="mr-3 text-sm font-semibold">Size</span>
-                <div className="relative">
-                  <select className="appearance-none rounded border border-gray-300 py-2 pl-3 pr-10 text-sm focus:border-black focus:outline-none focus:ring-2 focus:ring-black">
-                    <option>8 UK</option>
-                    <option>9 UK</option>
-                    <option>10 UK</option>
-                  </select>
-                  <span className="pointer-events-none absolute right-0 top-0 flex h-full w-10 items-center justify-center text-center text-gray-600">
-                    <ChevronDown size={16} />
-                  </span>
-                </div>
+
+            <div className="w-full">
+              <label
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                htmlFor="lastName"
+              >
+                Roll Number
+              </label>
+              <input
+                className="flex h-10 w-full rounded-md border border-black/30 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                type="text"
+                placeholder="Enter your Roll Number"
+                id="lastName"
+                onChange={(e)=>{setRollNo(e.target.value)}}
+              ></input>
+            </div>
+            <div className="col-span-2 grid">
+              <div className="w-full">
+                <label
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  htmlFor="email"
+                >
+                  Email
+                </label>
+                <input
+                  className="flex h-10 w-full rounded-md border border-black/30 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                  type="email"
+                  placeholder="Enter the your email address"
+                  id="email"
+                  onChange={(e)=>{setEmail(e.target.value)}}
+                ></input>
               </div>
             </div>
-            <div className="flex items-center justify-between">
-              <span className="title-font text-xl font-bold text-gray-900">₹47,199</span>
+
+
+            <div className="col-span-2 grid">
+              <div className="w-full">
+                <label
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  htmlFor="email"
+                >
+                  Messgae
+                </label>
+                <input
+                  className="flex h-10 w-full rounded-md border border-black/30 bg-transparent px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                  type="email"
+                  placeholder="Enter the Message"
+                  id="email"
+                  onChange={(e)=>{setMessage(e.target.value)}}
+                ></input>
+              </div>
+            </div>
+
+
+
+
+            <div className="col-span-2 grid">
               <button
                 type="button"
-                className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                className="w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                onClick={handleSubmit}
               >
-                Add to Cart
+                Submit
               </button>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+    </StudentDashboard>
+
+
   )
 }
 

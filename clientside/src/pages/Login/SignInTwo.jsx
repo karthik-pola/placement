@@ -1,6 +1,9 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useUpdateAccessToken } from '../../middleware/AuthProvider.jsx';
+
+import UserContext from '../../context/UserContext.js';
 
 // const [data,setData] = useState(true);
 // const [accessToken , setAccessToken] = useState("");
@@ -14,9 +17,13 @@ export function SignInTwo() {
   const [Password, SetPassword] = useState("");
   const [isValid , SetIsValid] = useState(false);
   const navigate = useNavigate();
+  const UpdateUserData = useUpdateAccessToken();
 
+  // const setData = useUpdateAccessToken();
    
   //handling acces token
+
+  // const {setUser , user} = useContext(UserContext);
 
 
 
@@ -27,29 +34,42 @@ export function SignInTwo() {
     SetPassword(e.target.value);
   };
 
+  const updateData = async(token , data) =>{
+    // console.log(data);
+    await UpdateUserData(token , data);
+
+    await setData(data);
+  }
+
   const handleLogin = () => {
-    axios.post("http://localhost:8000/api/v1/user/login", { "email": Email, "password": Password })
-      .then((res) => {
+    axios.post("http://localhost:8000/api/v1/user/login", { "email": Email, "password": Password } )
+      .then(async(res) => {
         console.log(res);
         res.status===200 && res.data.data.user.role==="admin" && navigate("/admin") && SetIsValid(true)
-        res.status===200 && res.data.data.user.role==="Student" && navigate("/u1") && SetIsValid(true)
+        res.status===200 && res.data.data.user.role==="student" && navigate("/u1") && SetIsValid(true)
         res.status===200 && res.data.data.user.role==="facality" && navigate("/facality") && SetIsValid(true)
         res.status!=200 && SetIsValid(false) && navigate('/')
-        console.log(res);
+        // console.log(res);
+
+        navigate("/u1")
+        // await setUser(res.data.data.user)
+        // console.log("user" , user);
+        // console.log("user" , res.data.data.user);
+        await updateData(res.data.data.accessToken ,res.data.data.user);
       })
       .catch((error) => {
         console.error('Error logging in:', error);
       });
   };
   return (
-    <section>
-      <div className="grid grid-cols-1 lg:grid-cols-2 ">
+    <section className='my-auto pt-[100px] ps-[100px]'>
+      <div className="grid grid-cols-1 lg:grid-cols-2 mx-auto">
         <div className="relative flex items-end px-4 pb-10 pt-60 sm:px-6 sm:pb-16 md:justify-center lg:px-8 lg:pb-24">
           <div className="absolute inset-0">
             <img
               className="h-full w-full rounded-md object-cover object-top"
               src="https://images.unsplash.com/photo-1534120247760-c44c3e4a62f1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTk0fHxkZXNpZ25lcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60"
-              alt=""
+              alt="" 
             />
           </div>
           <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
@@ -58,7 +78,7 @@ export function SignInTwo() {
               <h3 className="text-4xl font-bold text-white">
                 Now you dont have to rely on your designer to create a new page
               </h3>
-              <ul className="mt-10 grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2">
+              {/* <ul className="mt-10 grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2">
                 <li className="flex items-center space-x-3">
                   <div className="inline-flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-blue-500">
                     <svg
@@ -127,7 +147,7 @@ export function SignInTwo() {
                   </div>
                   <span className="text-lg font-medium text-white"> Design Files Included </span>
                 </li>
-              </ul>
+              </ul> */}
             </div>
           </div>
         </div>
