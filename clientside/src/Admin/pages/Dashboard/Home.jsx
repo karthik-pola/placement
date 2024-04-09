@@ -5,6 +5,7 @@ import  BarChart  from './components/BarChart.jsx'
 import {UserData} from './Data.jsx'
 import BarGraph from './BarGraph.jsx'
 import LineGraph from './LineGraph.jsx'
+import { TableOne } from './TableOne.jsx'
 
 const Home = () => {
   const [userData,setUserData] = useState({
@@ -21,11 +22,11 @@ const Home = () => {
   return (
     <div>
        <AdminDashboard >
-        <div className='w-[800px] border-[2px]'>
-          {/* <BarChart chartData = {userData} /> */}
+        <div className='flex'>
           <BarGraph />
-          <LineGraph />
+          {/* <LineGraph /> */}
           </div>
+          <TableOne />
        </AdminDashboard>
     </div>
   )

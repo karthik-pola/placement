@@ -13,12 +13,14 @@ import { useUpdateAccessToken } from '../../middleware/AuthProvider.jsx';
 
 const NavbarComponent = () => {
   const UpdateUserData = useUpdateAccessToken();
+
   const navigate = useNavigate();
   const updateData = () => {
     UpdateUserData(" " , {});
+    localStorage.removeItem("accessToken");
   };
   const handleLogin = async() =>{
-    updateData();
+    UpdateUserData("" , "data");
     navigate("/");
   };
   return (

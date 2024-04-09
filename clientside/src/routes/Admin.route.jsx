@@ -23,12 +23,14 @@ import Alerts from "../Admin/pages/Alerts/Alerts.jsx"
 import CreateStudentFromExcel from "../Admin/pages/student/CreateStudentFromExcel.jsx"
 import Profile from "../Admin/pages/Profile/Profile.jsx"
 import Help from "../Admin/pages/Help/Help.jsx"
+import { useAccessToken } from "../middleware/AuthProvider.jsx"
+import AddPlacedData from "../Admin/pages/Dashboard/AddPlacedData.jsx"
 
 
 
 
 const AdminRoute = () => {
-//   const AccessToken = useAccessToken();
+  const AccessToken = useAccessToken();
   return (
       <Routes>
           <Route path="/u2" element={<Home  />}></Route>
@@ -43,6 +45,7 @@ const AdminRoute = () => {
           <Route path="/u2/createStudentFromExcel" element={<CreateStudentFromExcel/>}></Route>
           <Route path="/u2/profile" element={<Profile />}></Route>
           <Route path="/u2/help" element={<Help />}></Route>
+          <Route path="/u2/addPlacedData" element={<AddPlacedData />}></Route>
       </Routes>
   )
 }

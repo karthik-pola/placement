@@ -11,6 +11,8 @@ import EditDrive from './EditDrive.jsx';
 import Modal from './Card/Modal.jsx';
 import Overlay from './Card/Overlay.jsx';
 import { AnimatePresence } from 'framer-motion';
+import AdminDashboard from '../../components/AdminDashboard.jsx';
+import DownloadExcel from './DownloadExcel.jsx';
 // import { Link } from 'lucide-react';
 // import NavbarComponent from '../../Components/NavbarComponent.jsx';
 
@@ -57,15 +59,11 @@ const Drives = () => {
   }
 
   return (
+
+
+    <AdminDashboard>
   <div className='drives'>
 
-    {/* <StudentDashboard> */}
-      {/* <div className="mx-auto grid w-full max-w-7xl items-center space-y-4 px-2 py-10 md:grid-cols-2 md:gap-6 md:space-y-0 lg:grid-cols-4">
-        {Data.map((item) => (
-          <Card data={item} key={item.id} />
-        ))}
-      </div> */}
-      {/* </StudentDashboard> */}
 
 
 
@@ -140,13 +138,13 @@ const Drives = () => {
                             </div>
                             <div className="ml-4">
                               <div className="text-sm font-medium text-gray-900">{data.companyName}</div>
-                              <div className="text-sm text-gray-700">{data.companyName}</div>
+                              {/* <div className="text-sm text-gray-700">{data.companyName}</div> */}
                             </div>
                           </div>
                         </td>
                         <td className="whitespace-nowrap px-12 py-4">
                           <div className="text-sm text-gray-900 ">{data.companyName}</div>
-                          <div className="text-sm text-gray-700">{data.companyName}</div>
+                          {/* <div className="text-sm text-gray-700">{data.companyName}</div> */}
                         </td>
                         <td className="whitespace-nowrap px-4 py-4">
                           <span className="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">
@@ -159,7 +157,7 @@ const Drives = () => {
                         <td className="whitespace-nowrap px-4 py-4 text-right text-sm font-medium">
                           <Link 
                           to={"/u2/drives/update"}
-                          state = {{ data: data.companyName }}
+                          state = {{ data: data._id }}
                           className="text-gray-700">
                             Edit
                           </Link>
@@ -180,6 +178,8 @@ const Drives = () => {
 
 
       </div>
+      <DownloadExcel />
+      </AdminDashboard>
   );
 };
 

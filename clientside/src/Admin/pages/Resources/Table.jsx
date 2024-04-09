@@ -9,7 +9,7 @@ const Table = ({ resource}) => {
     const deleteResource = async() =>{
         const response = await axios.delete(`http://localhost:8000/api/v1/resources/delete/${resource._id}`);
         console.log(response);
-        window. location. reload();
+        window.location.reload();
     }
   return (
       <tr key={resource._id}>

@@ -17,7 +17,7 @@ const Alerts = () => {
         .then((res) => {
           setData(res.reverse());
           console.log("alert")
-          console.log("data:",data);
+          console.log("data:",Data);
         });
       };
       fetchData();

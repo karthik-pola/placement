@@ -1,5 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { SignInTwo } from './SignInTwo'
+import AnimatedProfile from './Animated/AnimatedProfile.jsx'
+import { SignInThree } from './SignInThree.jsx'
 
 // import AuthContext from '../../middleware/authContext.js';
 
@@ -14,7 +16,9 @@ const Login = () => {
   
   return (
     <div>
-      <SignInTwo />
+      {/* <SignInTwo /> */}
+      {/* <AnimatedProfile /> */}
+      <SignInThree />
     </div>
   )
 }

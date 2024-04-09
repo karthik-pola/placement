@@ -27,7 +27,7 @@ const Row = ({data}) => {
         </div>
       </td>
       <td className="whitespace-nowrap px-12 py-4">
-          <div className="text-sm text-gray-900 ">{data.userName}</div>
+          <div className="text-sm text-gray-900 ">{data.gender}</div>
       </td>
   </tr>
 </div>
@@ -41,7 +41,7 @@ const Row = ({data}) => {
         </div>
       </td>
       <td className="whitespace-nowrap px-12 py-4">
-          <div className="text-sm text-gray-900 ">{data.userName}</div>
+          <div className="text-sm text-gray-900 ">{data.department}</div>
       </td>
   </tr>
 </div>
@@ -56,7 +56,7 @@ const Row = ({data}) => {
         </div>
       </td>
       <td className="whitespace-nowrap px-12 py-4">
-          <div className="text-sm text-gray-900 ">{data.userName}</div>
+          <div className="text-sm text-gray-900 ">{data.phoneNumber}</div>
       </td>
   </tr>
 </div>

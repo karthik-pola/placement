@@ -63,20 +63,21 @@ const Profile = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      console.log("Fetching data" , AccessToken);
       try {
         console.log('Fetching data', AccessToken);
-        const response = await axios.get("http://localhost:8000/api/v1/user/current-user", {
+        const response = await axios.get("http://localhost:8000/api/v1/admin//current-admin", {
           headers: {
             'Authorization': `Bearer ${AccessToken}`
           }
         });
-
+        console.log(response);
         // Check if data is received successfully
         if (response && response.data && response.data.data) {
           setData(response.data.data); // Set data state
           console.log('User data:', response.data.data);
         } else {
-          console.error('Failed to fetch user data');
+          console.log('Failed to fetch user data');
         }
       } catch (error) {
         console.error('Error fetching user data:', error);

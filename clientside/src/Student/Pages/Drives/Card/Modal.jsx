@@ -4,6 +4,8 @@ import Feature from "./Feature";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { useAccessToken } from "../../../../middleware/AuthProvider";
 
 const Modal = ({ data, close }) => {
 //   const {
@@ -15,8 +17,17 @@ const Modal = ({ data, close }) => {
 //     numWashrooms,
 //     livingSpace,
 //   } = data;
-const handleApplyNow = () => {
-      window.location.href = "www.google.com";
+const AccessToken = useAccessToken();
+const handleApplyNow = async() => {
+  console.log(AccessToken);
+  const response = await axios.post("http://localhost:8000/api/v1/drives/register",{
+    "drive_id":data._id
+},{
+  headers: {
+    'Authorization': `Bearer ${AccessToken}`
+  }
+});
+    console.log(response);
 };
   const modalVariants = {
     open: {
@@ -73,6 +84,7 @@ const handleApplyNow = () => {
           <p className="leading-relaxed font-semibold">Last Date To Register :{data.lastDateToRegister}</p>
         </motion.div>
         <motion.button className="apply-btn" whileHover={{ scale: 1.2 }}
+        onClick={handleApplyNow}
         > Apply Now</motion.button>
         <motion.button
           className="modal__close-wrapper"

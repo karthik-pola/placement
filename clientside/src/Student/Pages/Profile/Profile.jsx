@@ -39,6 +39,8 @@ const Profile = () => {
       <TableOne UserData={data} />
       <TableTwo UserData={data} />
     </div>
+
+  
     </StudentDashboard>
   )
 }

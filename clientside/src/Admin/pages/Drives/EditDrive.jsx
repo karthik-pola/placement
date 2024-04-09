@@ -8,9 +8,9 @@ const EditDrive = (props) => {
 
     const location = useLocation();
     // const { driveId } = props.location.state;
-    const companyNam = location.state?.data; // Accessing the drive ID from location state
+    const driveId = location.state?.data; // Accessing the drive ID from location state
 
-    console.log("Drive ID:", companyNam);
+    console.log("Drive ID:", driveId);
 
   const [companyName, setCompanyName] = useState('');
   const [eligibility, setEligibility] = useState('');
@@ -60,7 +60,7 @@ const EditDrive = (props) => {
   console.log("FormData:", formData);
 
     // Send a POST request to the backend API with FormData
-    const response = await axios.post("http://localhost:8000/api/v1/drives/create", formData);
+    const response = await axios.post(`http://localhost:8000/api/v1/drives/update/${driveId}`, formData);
 
     console.log(response.data);
     // Handle success (e.g., show success message, redirect user)

@@ -2,7 +2,7 @@ import { Route ,Routes } from "react-router-dom"
 
 
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import StudentHome from "../Student/Pages/Home/StudentHome.jsx"
 import Alerts from "../Student/Pages/Alerts/Alerts.jsx"
 import Drives from "../Student/Pages/Drives/Drives.jsx"
@@ -14,16 +14,22 @@ import LandingPageHome from "../pages/home/landingPageHome.jsx"
 import StudentDashboard from "../Student/Components/StudentDashboard.jsx"
 import UpdateEducationalDetails from "../Student/Pages/Profile/UpdateEducationalDetails.jsx"
 import UpdatePersonalDetails from "../Student/Pages/Profile/UpdatePersonalDetails.jsx"
-// import { useAccessToken } from "../middleware/AuthProvider.jsx"
+import { useAccessToken, useUserData } from "../middleware/AuthProvider.jsx"
 
 
 
 
 const StudentRoute = () => {
-  // const AccessToken = useAccessToken();
+  const AccessToken = useAccessToken();
+  const User = localStorage.getItem("userData");
+
+  useEffect(()=>{
+    console.log("user from usefeee");
+    console.log(User);
+  },[])
   return (
     // <StudentDashboard>
-    // AccessToken.trim() !="" &&
+    User &&
       <Routes>
           <Route path="/u1" element={<StudentHome  />}></Route>
           <Route path="/u1/alerts" element={<Alerts  />}></Route>
